@@ -3,7 +3,21 @@ package L_Lista;
 public class Lista {
 
     Nodo radice;
-    
+
+    class Iterator {
+        private Nodo nodo;
+        private Iterator(Nodo nodo) {
+            this.nodo = nodo;
+        }
+        public boolean hasNext() {
+            return nodo != null;
+        }
+        public Nodo next( {
+            if (nodo == null) return null;
+            Nodo result = new 
+        })
+    }
+
     public Lista() {
         radice = null;
     }
@@ -12,14 +26,87 @@ public class Lista {
         return radice==null;
     }
 
+    public void add( int data ) {
+        Nodo n = new Nodo(data);
+        if (isEmpty()) {
+            radice = n;
+        } else {
+            Nodo p = radice;
+            while (p.getNext()!=null) p = p.getNext();
+            p.setNext( n );
+        }
+    }
     public void add( Nodo n ) {
         if (isEmpty()) {
             radice = n;
         } else {
             Nodo p = radice;
-            while (p.getSuccessivo()!=null) p = p.getSuccessivo();
-            p.setSuccessivo( n );
+            while (p.getNext()!=null) p = p.getNext();
+            p.setNext( n );
         }
+    }
+
+    public void addHead( int data ) {
+        Nodo n = new Nodo(data);
+        if (!isEmpty()) {
+            radice = n;
+        } else {
+            n.setNext(radice);
+            radice = n;
+        }
+    }
+    public void addHead( Nodo n ) {
+        if (!isEmpty()) {
+            radice = n;
+        } else {
+            n.setNext(radice);
+            radice = n;
+        }
+    }
+
+    public void addSorted( int data ) {
+        Nodo n = new Nodo(data);
+        if (isEmpty()) { radice=n; n.setNext(null); return; }
+        int vn = n.getValue();
+        if (vn<radice.getValue()) { n.setNext(radice); radice=n; return; }
+        Nodo p1 = radice;
+        Nodo p2 = radice.getNext();
+        while ( p2!=null && vn>p2.getValue() ) {
+            p1=p2;
+            p2=p2.getNext();
+        }
+        n.setNext(p2);
+        p1.setNext(n);
+    }
+    public void addSorted( Nodo n ) {
+        if (isEmpty()) { radice=n; n.setNext(null); return; }
+        int vn = n.getValue();
+        if (vn<radice.getValue()) { n.setNext(radice); radice=n; return; }
+        Nodo p1 = radice;
+        Nodo p2 = radice.getNext();
+        while ( p2!=null && vn>p2.getValue() ) {
+            p1=p2;
+            p2=p2.getNext();
+        }
+        n.setNext(p2);
+        p1.setNext(n);
+    }
+
+    public void addPos( int data, int position ) {
+        Nodo n = new Nodo(data);
+        if (isEmpty()) { n.setNext(radice); radice = n; return; }
+        Nodo p_pre = null;
+        Nodo p = radice;
+        int k = 0;
+        
+        if (position == 0) { radice = n; n.setNext(p); return; }
+        while (p != null && k < position ) { 
+            k++; 
+            p_pre = p; 
+            p = p.getNext();
+        }
+        p_pre.setNext(n);
+        n.setNext(p);
     }
 
     public String toString() {
@@ -27,7 +114,7 @@ public class Lista {
         Nodo p = radice;
         while (p!=null) {
             s += p + " ";
-            p = p.getSuccessivo();
+            p = p.getNext();
         }
         s += "End!\n";
         return s;

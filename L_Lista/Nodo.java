@@ -10,19 +10,23 @@ public class Nodo {
         this.successivo = successivo;
     }
 
-    public void setValore( int nuovoValore ) {
+    public Nodo( int valore ) {
+        this.valore = valore;
+    }
+
+    public void setValue( int nuovoValore ) {
         valore = nuovoValore;
     }
 
-    public void setSuccessivo( Nodo nuovoSuccessivo ) {
+    public void setNext( Nodo nuovoSuccessivo ) {
         successivo = nuovoSuccessivo;
     } 
 
-    public int getValore() {
+    public int getValue() {
         return valore;
     }
 
-    public Nodo getSuccessivo() {
+    public Nodo getNext() {
         return successivo;
     }
 

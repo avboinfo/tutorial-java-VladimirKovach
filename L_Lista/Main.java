@@ -6,13 +6,17 @@ public class Main {
         System.out.println("Partiti!");
         
         Lista l = new Lista();
-        System.out.println( l );
+        l.addSorted(2);
+        l.addSorted(5);
+        l.addSorted(7);
+        l.addSorted(3);
 
-        for (int i=0; i<10; i++) {
-            l.add( new Nodo( i, null ));
-        }
-
-        System.out.println( l );
+        l.addPos(4, 2);
+        System.out.println(l);
+        l.addPos(21, 3);
+        System.out.println(l);
+        l.addPos(21, 0);
+        System.out.println(l);
     } 
 
 }
