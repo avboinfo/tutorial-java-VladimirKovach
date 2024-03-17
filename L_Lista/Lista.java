@@ -12,10 +12,6 @@ public class Lista {
         public boolean hasNext() {
             return nodo != null;
         }
-        public Nodo next( {
-            if (nodo == null) return null;
-            Nodo result = new 
-        })
     }
 
     public Lista() {
@@ -94,12 +90,13 @@ public class Lista {
 
     public void addPos( int data, int position ) {
         Nodo n = new Nodo(data);
-        if (isEmpty()) { n.setNext(radice); radice = n; return; }
+        if (isEmpty()) { radice = n; n.setNext(null);  return; }
+        if (position == 0) { n.setNext(radice); radice = n; return; }
+
         Nodo p_pre = null;
         Nodo p = radice;
         int k = 0;
-        
-        if (position == 0) { radice = n; n.setNext(p); return; }
+
         while (p != null && k < position ) { 
             k++; 
             p_pre = p; 
@@ -107,6 +104,20 @@ public class Lista {
         }
         p_pre.setNext(n);
         n.setNext(p);
+    }
+    public void removePos( int position ) {
+        if (isEmpty()) { return; }
+        if (position == 0) { radice = radice.getNext(); return; }
+
+        Nodo p_pre = null;
+        Nodo p = radice;
+        int k = 0;
+        while (p != null && k < position) {
+            k++;
+            p_pre = p;
+            p = p.getNext();
+        }
+        p_pre.setNext(p.getNext());
     }
 
     public String toString() {

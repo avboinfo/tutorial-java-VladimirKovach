@@ -17,6 +17,8 @@ public class Main {
         System.out.println(l);
         l.addPos(21, 0);
         System.out.println(l);
+        l.removePos(0);
+        System.out.println(l);
     } 
 
 }
