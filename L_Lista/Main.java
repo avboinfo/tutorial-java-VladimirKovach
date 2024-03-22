@@ -13,11 +13,7 @@ public class Main {
 
         l.addPos(4, 2);
         System.out.println(l);
-        l.addPos(21, 3);
-        System.out.println(l);
-        l.addPos(21, 0);
-        System.out.println(l);
-        l.removePos(0);
+        l.addPos(21, 1);
         System.out.println(l);
     } 
 

@@ -2,6 +2,28 @@ package L_Lista;
 
 public class Lista {
 
+    class Iteratore {
+        private Nodo nodo;
+        private Iteratore(Nodo nodo) {
+            this.nodo = nodo;
+        }
+        public boolean hasNext() {
+            return nodo!=null;
+        }
+        public Nodo next() {
+            if (nodo==null) return null;
+            // Nodo result = new Nodo( nodo.getValore(), nodo.getNext() );
+            Nodo result = nodo;
+            nodo = nodo.getNext();
+            return result;
+        }
+    }
+
+    public Iteratore getIterator() {
+        Iteratore i = new Iteratore(radice);
+        return i;
+    }
+
     Nodo radice;
 
     class Iterator {
@@ -38,7 +60,7 @@ public class Lista {
         } else {
             Nodo p = radice;
             while (p.getNext()!=null) p = p.getNext();
-            p.setNext( n );
+            p.setNext(n);
         }
     }
 
@@ -93,17 +115,14 @@ public class Lista {
         if (isEmpty()) { radice = n; n.setNext(null);  return; }
         if (position == 0) { n.setNext(radice); radice = n; return; }
 
-        Nodo p_pre = null;
         Nodo p = radice;
         int k = 0;
-
-        while (p != null && k < position ) { 
-            k++; 
-            p_pre = p; 
+        while (p.getNext() != null && k < position-1) { 
+            k++;  
             p = p.getNext();
         }
-        p_pre.setNext(n);
-        n.setNext(p);
+        n.setNext(p.getNext());
+        p.setNext(n);
     }
     public void removePos( int position ) {
         if (isEmpty()) { return; }
