@@ -51,7 +51,7 @@ public class Lista {
         } else {
             Nodo p = radice;
             while (p.getNext()!=null) p = p.getNext();
-            p.setNext( n );
+            p.setNext(n);
         }
     }
     public void add( Nodo n ) {
