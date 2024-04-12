@@ -50,8 +50,8 @@ public class Lista {
             radice = n;
         } else {
             Nodo p = radice;
-            while (p.getNext()!=null) p = p.getNext();
-Node            p.setNext(n);
+            while (p.getNext()!=null) p = p.getNext(); 
+            p.setNext(n);
         }
     }
     public void add( Nodo n ) {
